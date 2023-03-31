@@ -1,3 +1,9 @@
+# ENVs
+.env
+
+# VS Code
+.vscode
+
 # Logs
 logs
 *.log
