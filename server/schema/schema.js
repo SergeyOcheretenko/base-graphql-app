@@ -54,6 +54,29 @@ const Mutation = new GraphQLObjectType({
         return { ...args };
       },
     },
+    createPost: {
+      type: PostType,
+      args: {
+        // id: { type: GraphQLID },
+        comment: { type: GraphQLString },
+        userId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return { ...args };
+      },
+    },
+    createHobby: {
+      type: HobbyType,
+      args: {
+        // id: { type: GraphQLID },
+        title: { type: GraphQLString },
+        description: { type: GraphQLString },
+        userId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return { ...args };
+      },
+    },
   }),
 });
 
