@@ -8,6 +8,15 @@ import {
   GraphQLString,
 } from 'graphql';
 
+// Dummy data
+const users = [
+  { id: '1', name: 'Bond', age: 36 },
+  { id: '2', name: 'Anna', age: 26 },
+  { id: '3', name: 'Bella', age: 18 },
+  { id: '4', name: 'Gina', age: 20 },
+  { id: '5', name: 'Georgina', age: 36 },
+];
+
 // Types
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -27,7 +36,9 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: UserType,
       args: { id: { type: GraphQLID } },
-      resolve(parent, args) {},
+      resolve(parent, args) {
+        return users.find((user) => user.id === args.id);
+      },
     },
   }),
 });
