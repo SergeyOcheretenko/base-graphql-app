@@ -1,6 +1,11 @@
 'use strict';
 
-import { GraphQLID, GraphQLObjectType, GraphQLSchema } from 'graphql';
+import {
+  GraphQLID,
+  GraphQLObjectType,
+  GraphQLSchema,
+  GraphQLString,
+} from 'graphql';
 import { users, hobbies, posts } from './dummies.js';
 import { UserType } from './types/user.type.js';
 import { HobbyType } from './types/hobby.type.js';
@@ -34,6 +39,25 @@ const RootQuery = new GraphQLObjectType({
   }),
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: () => ({
+    createUser: {
+      type: UserType,
+      args: {
+        // id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        age: { type: GraphQLString },
+        profession: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return { ...args };
+      },
+    },
+  }),
+});
+
 export default new GraphQLSchema({
   query: RootQuery,
+  mutation: Mutation,
 });
