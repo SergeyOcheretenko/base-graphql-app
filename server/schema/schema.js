@@ -2,6 +2,7 @@
 
 import {
   GraphQLID,
+  GraphQLList,
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
@@ -22,6 +23,12 @@ const RootQuery = new GraphQLObjectType({
         return users.find((user) => user.id === args.id);
       },
     },
+    users: {
+      type: new GraphQLList(UserType),
+      resolve(parent, args) {
+        return users;
+      },
+    },
     hobby: {
       type: HobbyType,
       args: { id: { type: GraphQLID } },
@@ -29,11 +36,23 @@ const RootQuery = new GraphQLObjectType({
         return hobbies.find((hobby) => hobby.id === args.id);
       },
     },
+    hobbies: {
+      type: new GraphQLList(HobbyType),
+      resolve(parent, args) {
+        return hobbies;
+      },
+    },
     post: {
       type: PostType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return posts.find((post) => post.id === args.id);
+      },
+    },
+    posts: {
+      type: new GraphQLList(PostType),
+      resolve(parent, args) {
+        return posts;
       },
     },
   }),
